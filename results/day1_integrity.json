@@ -1,0 +1,161 @@
+{
+  "n_files_hashed": 11298,
+  "corrupt_or_zero_byte": {
+    "count": 0,
+    "examples": []
+  },
+  "identical_pixels_within_split": {
+    "groups": 0,
+    "examples": []
+  },
+  "identical_pixels_across_splits": {
+    "groups": 10,
+    "examples": [
+      [
+        [
+          "valid/Ungood",
+          "00124_60.png"
+        ],
+        [
+          "test/Ungood",
+          "00124_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "00134_60.png"
+        ],
+        [
+          "test/Ungood",
+          "00134_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "00154_60.png"
+        ],
+        [
+          "test/Ungood",
+          "00154_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "00191_60.png"
+        ],
+        [
+          "test/Ungood",
+          "00191_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "00630_60.png"
+        ],
+        [
+          "test/Ungood",
+          "00630_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "01180_60.png"
+        ],
+        [
+          "test/Ungood",
+          "01180_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "01388_60.png"
+        ],
+        [
+          "test/Ungood",
+          "01388_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "01471_60.png"
+        ],
+        [
+          "test/Ungood",
+          "01471_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "01597_60.png"
+        ],
+        [
+          "test/Ungood",
+          "01597_60.png"
+        ]
+      ],
+      [
+        [
+          "valid/Ungood",
+          "01646_60.png"
+        ],
+        [
+          "test/Ungood",
+          "01646_60.png"
+        ]
+      ]
+    ]
+  },
+  "same_filename_across_splits": {
+    "count": 10,
+    "examples": {
+      "00124_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "00134_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "00154_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "00191_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "00630_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "01180_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "01388_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "01471_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "01597_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ],
+      "01646_60.png": [
+        "test/Ungood",
+        "valid/Ungood"
+      ]
+    }
+  }
+}

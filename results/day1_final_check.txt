@@ -1,0 +1,51 @@
+== Environment ==
+[PASS] python is 3.12
+[PASS] torch 2.15.0 + torchvision 0.29.2, CUDA sees an RTX 4060
+[PASS] pip check clean
+[PASS] running inside the project venv (brain)
+== Tests ==
+[PASS] pytest: ============================= 41 passed in 24.93s ==============================
+[PASS] data manifest matches files on disk
+== Evidence and documents ==
+[PASS] check_env: 9/9 smoke tests PASS
+[PASS] official split counts 7500/39/44/640/3075
+[PASS] dataset audit has no warnings ([])
+[PASS] patient overlap train/valid/test = 0/0/10
+[PASS] integrity: 11,298 files hashed
+[PASS] integrity: 0 corrupt or zero-byte
+[PASS] integrity: 0 duplicate groups inside a split
+[PASS] integrity: cross-split duplicates are exactly the 10 documented
+[PASS] duplicates: 10 image-identical and 10 mask-identical
+[PASS] I/O benchmark recorded
+[PASS] audit_extra.json present (image_colour, slice_index)
+[INFO] image colour: 256 unique RGB triples; top-256 cover 1.0000; median 233.0/image
+[INFO] valid/test overlap by group: {'valid/good&test/good': 0, 'valid/good&test/Ungood': 0, 'valid/Ungood&test/good': 0, 'valid/Ungood&test/Ungood': 10}
+[PASS] data.yaml parses, ends with newline, one known_issues block
+[PASS] data/README.md: exists, no TBD/placeholder left
+[PASS] results/day1_notes.md: exists, no TBD/placeholder left
+[PASS] data/README: license + BMAD citation
+[PASS] data/README: BraTS citation entries
+[PASS] data/README: download source (Drive URL) recorded
+[FAIL] manifest has 11,298 entries
+[PASS] data/README records the manifest SHA-256
+[FAIL] requirements.txt: every direct dependency pinned (['pyyaml', 'pytest', 'matplotlib'])
+[PASS] requirements-lock.txt pins torch 2.15.0 + torchvision 0.29.2
+[PASS] top README states 'not a diagnosis'
+== Git hygiene ==
+[PASS] git ignores data/raw/Brain
+[PASS] git ignores data/processed
+[PASS] git ignores artifacts/checkpoints/x/y.bin
+[PASS] git ignores brain
+[PASS] git ignores x.ckpt
+[PASS] git ignores x.pt
+[PASS] git ignores x.npy
+[FAIL] git ignores x.nii.gz
+[PASS] no forbidden paths tracked
+[PASS] no brain/ or data/raw paths about to be added
+[PASS] no untracked non-ignored file over 5 MB
+[PASS] no blob over 5 MB in Git history
+[PASS] raw BraTS2021 removed from data/raw
+[INFO] core.fileMode=false (expected false on fuseblk)
+
+PASS=38 FAIL=3
+DAY 1 GATE: FAIL - do not commit

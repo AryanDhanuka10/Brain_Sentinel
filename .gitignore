@@ -2,6 +2,22 @@
 __pycache__/
 *.py[codz]
 *$py.class
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw
+data/processed 
+artifacts/*
+!artifacts/.gitkeep
+*.ckpt
+*.pt
+*.pth
+*.npy
+*.npz
+*.faiss
+results/**/*.png
+brain/
 
 # C extensions
 *.so

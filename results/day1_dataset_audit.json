@@ -1,0 +1,267 @@
+{
+  "root": "data/raw/Brain",
+  "groups": {
+    "train/good": {
+      "img_dir": "train/good",
+      "n_images": 7500,
+      "n_patients_parsed": 424,
+      "size_mode_counts": {
+        "240x240|RGBA": 7500
+      },
+      "image_stats": {
+        "n_sampled": 200,
+        "dtypes": [
+          "uint8"
+        ],
+        "n_rgb_channels_identical": 0,
+        "alpha_values_seen": [
+          255
+        ],
+        "intensity_min": 0,
+        "intensity_max": 255,
+        "mean_nonzero_frac": 0.28810460069444443
+      },
+      "mask_dir": null
+    },
+    "valid/good": {
+      "img_dir": "valid/good/img",
+      "n_images": 39,
+      "n_patients_parsed": 39,
+      "size_mode_counts": {
+        "240x240|RGBA": 39
+      },
+      "image_stats": {
+        "n_sampled": 39,
+        "dtypes": [
+          "uint8"
+        ],
+        "n_rgb_channels_identical": 0,
+        "alpha_values_seen": [
+          255
+        ],
+        "intensity_min": 0,
+        "intensity_max": 255,
+        "mean_nonzero_frac": 0.25937989672364675
+      },
+      "mask_dir": "label",
+      "n_masks": 39,
+      "images_without_mask": 0,
+      "masks_without_image": 0,
+      "mask_size_mode_counts": {
+        "240x240|RGBA": 39
+      },
+      "mask_stats": {
+        "foreground_rule": "any RGB channel > 0 (alpha ignored) - TENTATIVE",
+        "alpha_values_seen": [
+          255
+        ],
+        "n_distinct_rgb_union": 1,
+        "max_distinct_rgb_in_one_mask": 1,
+        "rgb_values_union_first12": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "n_empty_masks": 39,
+        "fg_frac_min": 0.0,
+        "fg_frac_median": 0.0,
+        "fg_frac_max": 0.0
+      }
+    },
+    "valid/Ungood": {
+      "img_dir": "valid/Ungood/img",
+      "n_images": 44,
+      "n_patients_parsed": 11,
+      "size_mode_counts": {
+        "240x240|RGBA": 44
+      },
+      "image_stats": {
+        "n_sampled": 44,
+        "dtypes": [
+          "uint8"
+        ],
+        "n_rgb_channels_identical": 0,
+        "alpha_values_seen": [
+          255
+        ],
+        "intensity_min": 0,
+        "intensity_max": 255,
+        "mean_nonzero_frac": 0.2886564867424242
+      },
+      "mask_dir": "label",
+      "n_masks": 44,
+      "images_without_mask": 0,
+      "masks_without_image": 0,
+      "mask_size_mode_counts": {
+        "240x240|RGBA": 44
+      },
+      "mask_stats": {
+        "foreground_rule": "any RGB channel > 0 (alpha ignored) - TENTATIVE",
+        "alpha_values_seen": [
+          255
+        ],
+        "n_distinct_rgb_union": 4,
+        "max_distinct_rgb_in_one_mask": 4,
+        "rgb_values_union_first12": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            56,
+            55,
+            77
+          ],
+          [
+            112,
+            123,
+            143
+          ],
+          [
+            255,
+            255,
+            255
+          ]
+        ],
+        "n_empty_masks": 0,
+        "fg_frac_min": 0.00017361111111111112,
+        "fg_frac_median": 0.03825520833333333,
+        "fg_frac_max": 0.08371527777777778
+      }
+    },
+    "test/good": {
+      "img_dir": "test/good/img",
+      "n_images": 640,
+      "n_patients_parsed": 162,
+      "size_mode_counts": {
+        "240x240|RGBA": 640
+      },
+      "image_stats": {
+        "n_sampled": 200,
+        "dtypes": [
+          "uint8"
+        ],
+        "n_rgb_channels_identical": 0,
+        "alpha_values_seen": [
+          255
+        ],
+        "intensity_min": 0,
+        "intensity_max": 255,
+        "mean_nonzero_frac": 0.27674895833333335
+      },
+      "mask_dir": "label",
+      "n_masks": 640,
+      "images_without_mask": 0,
+      "masks_without_image": 0,
+      "mask_size_mode_counts": {
+        "240x240|RGBA": 640
+      },
+      "mask_stats": {
+        "foreground_rule": "any RGB channel > 0 (alpha ignored) - TENTATIVE",
+        "alpha_values_seen": [
+          255
+        ],
+        "n_distinct_rgb_union": 1,
+        "max_distinct_rgb_in_one_mask": 1,
+        "rgb_values_union_first12": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "n_empty_masks": 640,
+        "fg_frac_min": 0.0,
+        "fg_frac_median": 0.0,
+        "fg_frac_max": 0.0
+      }
+    },
+    "test/Ungood": {
+      "img_dir": "test/Ungood/img",
+      "n_images": 3075,
+      "n_patients_parsed": 615,
+      "size_mode_counts": {
+        "240x240|RGBA": 3075
+      },
+      "image_stats": {
+        "n_sampled": 200,
+        "dtypes": [
+          "uint8"
+        ],
+        "n_rgb_channels_identical": 0,
+        "alpha_values_seen": [
+          255
+        ],
+        "intensity_min": 0,
+        "intensity_max": 255,
+        "mean_nonzero_frac": 0.29279192708333335
+      },
+      "mask_dir": "label",
+      "n_masks": 3075,
+      "images_without_mask": 0,
+      "masks_without_image": 0,
+      "mask_size_mode_counts": {
+        "240x240|RGBA": 3075
+      },
+      "mask_stats": {
+        "foreground_rule": "any RGB channel > 0 (alpha ignored) - TENTATIVE",
+        "alpha_values_seen": [
+          255
+        ],
+        "n_distinct_rgb_union": 4,
+        "max_distinct_rgb_in_one_mask": 4,
+        "rgb_values_union_first12": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            56,
+            55,
+            77
+          ],
+          [
+            112,
+            123,
+            143
+          ],
+          [
+            255,
+            255,
+            255
+          ]
+        ],
+        "n_empty_masks": 0,
+        "fg_frac_min": 1.736111111111111e-05,
+        "fg_frac_median": 0.037135416666666664,
+        "fg_frac_max": 0.10994791666666667
+      }
+    }
+  },
+  "warnings": [],
+  "patient_overlap_counts": {
+    "train&valid": 0,
+    "train&test": 0,
+    "valid&test": 10
+  },
+  "patient_overlap_ids": {
+    "train&valid": [],
+    "train&test": [],
+    "valid&test": [
+      "00124",
+      "00134",
+      "00154",
+      "00191",
+      "00630",
+      "01180",
+      "01388",
+      "01471",
+      "01597",
+      "01646"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "device": {
+    "status": "PASS",
+    "detail": "NVIDIA GeForce RTX 4060 Laptop GPU cc=(8, 9) vram=7.62GiB"
+  },
+  "conv_fwd_bwd_fp32": {
+    "status": "PASS",
+    "detail": "cudnn=92600 out=(8, 16, 240, 240)"
+  },
+  "conv_amp_fp16": {
+    "status": "PASS",
+    "detail": "torch.float16"
+  },
+  "resnet18_features_240": {
+    "status": "PASS",
+    "detail": "layer2=(16, 128, 30, 30) layer3=(16, 256, 15, 15)"
+  },
+  "bilinear_interp": {
+    "status": "PASS",
+    "detail": "(1, 1, 240, 240)"
+  },
+  "linalg_cusolver_cov448": {
+    "status": "PASS",
+    "detail": "torch.float32: |C@inv-I|max=7.6e-06; torch.float64: |C@inv-I|max=1.2e-14"
+  },
+  "cdist_topk": {
+    "status": "PASS",
+    "detail": "(4096, 1)"
+  },
+  "tv_nms": {
+    "status": "PASS",
+    "detail": "kept=74"
+  },
+  "vram_6GiB": {
+    "status": "PASS",
+    "detail": "6GiB alloc ok, peak=6.00GiB"
+  },
+  "_env": {
+    "python": "3.12.9",
+    "platform": "Linux-6.17.0-41-generic-x86_64-with-glibc2.42",
+    "torch": "2.15.0+cu132",
+    "torchvision": "0.29.2+cu132",
+    "cuda_build": "13.2",
+    "driver": "580.159.03",
+    "arch_list": [
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90",
+      "sm_100",
+      "sm_120"
+    ]
+  }
+}

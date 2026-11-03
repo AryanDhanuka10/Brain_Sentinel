@@ -1,0 +1,14 @@
+# BrainSentinel direct dependencies.
+# Verified on 2026-11-03: Python 3.12.9, RTX 4060 Laptop, driver 580.159.03 (CUDA 13.0 ceiling),
+# via scripts/check_env.py (9/9 PASS). Transitive pins: requirements-lock.txt (pip freeze).
+torch==2.15.0          # default PyPI wheel, CUDA 13.2 build; fallback = prior release, cu130 build
+torchvision==0.29.2
+numpy==2.5.4
+pillow==13.0.0
+pyyaml
+pytest
+matplotlib
+# --- NOT YET INSTALLED: add and pin when their day starts ---
+# scikit-learn, scipy, pandas, tqdm      (Days 3-7: metrics, PRO, tables)
+# langgraph                               (Day 10)
+# fastapi, uvicorn, python-multipart      (Day 11)

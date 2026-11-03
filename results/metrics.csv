@@ -1,0 +1,1 @@
+run_id,split,model,image_auroc,image_aupr,pixel_auroc,aupro,dice_val_thr,iou_val_thr,fpr,latency_ms,peak_vram_gb,status

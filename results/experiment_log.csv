@@ -1,0 +1,1 @@
+run_id,date,model,config_path,seed,checkpoint,metrics_file,runtime_s,peak_vram_gb,status,failure_notes

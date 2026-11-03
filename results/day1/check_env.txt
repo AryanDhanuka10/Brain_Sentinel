@@ -1,0 +1,11 @@
+[PASS] device: NVIDIA GeForce RTX 4060 Laptop GPU cc=(8, 9) vram=7.62GiB
+[PASS] conv_fwd_bwd_fp32: cudnn=92600 out=(8, 16, 240, 240)
+[PASS] conv_amp_fp16: torch.float16
+[PASS] resnet18_features_240: layer2=(16, 128, 30, 30) layer3=(16, 256, 15, 15)
+[PASS] bilinear_interp: (1, 1, 240, 240)
+[PASS] linalg_cusolver_cov448: torch.float32: |C@inv-I|max=7.6e-06; torch.float64: |C@inv-I|max=1.2e-14
+[PASS] cdist_topk: (4096, 1)
+[PASS] tv_nms: kept=74
+[PASS] vram_6GiB: 6GiB alloc ok, peak=6.00GiB
+
+FAILED: none

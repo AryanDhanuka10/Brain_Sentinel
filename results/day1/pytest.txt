@@ -1,0 +1,50 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.9, pytest-9.2.0, pluggy-1.7.0 -- /media/aryan-dhanuka/OS/AI Agent Hackathon/Brain_Sentinel/brain/bin/python
+cachedir: .pytest_cache
+rootdir: /media/aryan-dhanuka/OS/AI Agent Hackathon/Brain_Sentinel
+configfile: pyproject.toml
+collecting ... collected 41 items
+
+tests/test_config.py::test_data_yaml_ends_with_newline PASSED            [  2%]
+tests/test_config.py::test_data_yaml_parses_and_has_required_keys PASSED [  4%]
+tests/test_config.py::test_known_duplicates_match_overlap_patients PASSED [  7%]
+tests/test_day1_env.py::test_cuda_available PASSED                       [  9%]
+tests/test_day1_env.py::test_device_is_rtx_4060 PASSED                   [ 12%]
+tests/test_day1_env.py::test_vram_headroom_for_6gib PASSED               [ 14%]
+tests/test_day1_env.py::test_pinned_torch_pair PASSED                    [ 17%]
+tests/test_day1_data_contract.py::test_official_split_counts[train/good] PASSED [ 19%]
+tests/test_day1_data_contract.py::test_official_split_counts[valid/good] PASSED [ 21%]
+tests/test_day1_data_contract.py::test_official_split_counts[valid/Ungood] PASSED [ 24%]
+tests/test_day1_data_contract.py::test_official_split_counts[test/good] PASSED [ 26%]
+tests/test_day1_data_contract.py::test_official_split_counts[test/Ungood] PASSED [ 29%]
+tests/test_day1_data_contract.py::test_filenames_parse[train/good] PASSED [ 31%]
+tests/test_day1_data_contract.py::test_filenames_parse[valid/good] PASSED [ 34%]
+tests/test_day1_data_contract.py::test_filenames_parse[valid/Ungood] PASSED [ 36%]
+tests/test_day1_data_contract.py::test_filenames_parse[test/good] PASSED [ 39%]
+tests/test_day1_data_contract.py::test_filenames_parse[test/Ungood] PASSED [ 41%]
+tests/test_day1_data_contract.py::test_image_mask_pairing[valid/good] PASSED [ 43%]
+tests/test_day1_data_contract.py::test_image_mask_pairing[valid/Ungood] PASSED [ 46%]
+tests/test_day1_data_contract.py::test_image_mask_pairing[test/good] PASSED [ 48%]
+tests/test_day1_data_contract.py::test_image_mask_pairing[test/Ungood] PASSED [ 51%]
+tests/test_day1_data_contract.py::test_image_format[train/good] PASSED   [ 53%]
+tests/test_day1_data_contract.py::test_image_format[valid/good] PASSED   [ 56%]
+tests/test_day1_data_contract.py::test_image_format[valid/Ungood] PASSED [ 58%]
+tests/test_day1_data_contract.py::test_image_format[test/good] PASSED    [ 60%]
+tests/test_day1_data_contract.py::test_image_format[test/Ungood] PASSED  [ 63%]
+tests/test_day1_data_contract.py::test_masks_use_only_known_colours[valid/good] PASSED [ 65%]
+tests/test_day1_data_contract.py::test_masks_use_only_known_colours[valid/Ungood] PASSED [ 68%]
+tests/test_day1_data_contract.py::test_masks_use_only_known_colours[test/good] PASSED [ 70%]
+tests/test_day1_data_contract.py::test_masks_use_only_known_colours[test/Ungood] PASSED [ 73%]
+tests/test_day1_data_contract.py::test_good_masks_are_empty[valid/good] PASSED [ 75%]
+tests/test_day1_data_contract.py::test_good_masks_are_empty[test/good] PASSED [ 78%]
+tests/test_day1_data_contract.py::test_ungood_masks_are_nonempty[valid/Ungood] PASSED [ 80%]
+tests/test_day1_data_contract.py::test_ungood_masks_are_nonempty[test/Ungood] PASSED [ 82%]
+tests/test_day1_data_contract.py::test_binarization_keeps_dark_lesion_labels PASSED [ 85%]
+tests/test_day1_data_contract.py::test_train_patients_disjoint_from_valid_and_test PASSED [ 87%]
+tests/test_day1_data_contract.py::test_valid_test_overlap_is_the_documented_set PASSED [ 90%]
+tests/test_day1_data_contract.py::test_good_and_ungood_filenames_disjoint_within_split PASSED [ 92%]
+tests/test_day1_data_contract.py::test_cross_split_filename_collisions_are_exactly_the_documented_duplicates PASSED [ 95%]
+tests/test_day1_data_contract.py::test_documented_duplicates_are_byte_identical_ungood_images PASSED [ 97%]
+tests/test_day1_data_contract.py::test_sensitivity_exclusion_set_size PASSED [100%]
+
+============================= 41 passed in 24.93s ==============================
