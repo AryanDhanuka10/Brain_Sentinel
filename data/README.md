@@ -1,4 +1,3 @@
-cat > data/README.md <<'EOF'
 # Data: BMAD Brain subset (BraTS 2021 FLAIR, 2D axial PNG)
 Not in Git. Raw data lives in `data/raw/Brain/`.
 
