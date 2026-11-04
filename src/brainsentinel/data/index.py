@@ -8,13 +8,14 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+
 from .checks import list_images, mask_path, mask_to_binary, parse_name
-from .palette import pack_rgb
+from .palette import Palette, corner_bg, load_rgb, pack_rgb
 
 BASE_COLUMNS = ["split", "class", "file", "patient", "slice", "slice_bin",
                 "lesion_px", "size_bin"]
 TAIL_COLUMNS = ["unknown_mask_px", "mask_missing", "dims_ok", "sha256",
-                "overlap_patient", "dup_cross_split", "dup_within_split"]
+                "overlap_patient", "dup_cross_split", "dup_within_split", "corner_bg"]
 
 
 def fg_colors(cfg: dict) -> list[tuple[int, int, int]]:
@@ -58,7 +59,7 @@ def _mask_info(path: Path, fg: list[tuple[int, int, int]]):
     return lesion, counts, unknown, tuple(arr.shape[:2])
 
 
-def build_rows(cfg: dict) -> list[dict]:
+def build_rows(cfg: dict, pal: Palette) -> list[dict]:
     size = cfg["image_size"]
     fg = fg_colors(cfg)
     rows: list[dict] = []
@@ -72,6 +73,7 @@ def build_rows(cfg: dict) -> list[dict]:
                    "slice": sl, "slice_bin": slice_bin(sl),
                    "lesion_px": None, "unknown_mask_px": None, "mask_missing": 0,
                    "dims_ok": int((h, w) == (size, size)),
+                   "corner_bg": corner_bg(pal.encode(load_rgb(p))),
                    "sha256": hashlib.sha256(p.read_bytes()).hexdigest()}
             for c in fg:
                 row[fg_col(c)] = None

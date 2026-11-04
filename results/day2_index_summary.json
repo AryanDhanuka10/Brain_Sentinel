@@ -126,6 +126,14 @@
       "detail": "unknown px=0"
     },
     {
+      "name": "corner bg <= train-derived max",
+      "ok": true,
+      "detail": {
+        "train_max": 10,
+        "n_offset": 33
+      }
+    },
+    {
       "name": "good masks all empty",
       "ok": true,
       "detail": []

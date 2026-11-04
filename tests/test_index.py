@@ -90,3 +90,11 @@ def test_cross_split_duplicates(cfg, rows):
     assert {r["file"] for r in flagged if r["split"] == "valid"} == want
     assert len(flagged) == 2 * len(want)
     assert not any(r["split"] == "train" for r in flagged)
+
+@needs_index
+def test_offset_background_pinned(rows):
+    off = [r for r in rows if int(r["corner_bg"]) > 0]
+    assert len(off) == 33  # measured Day 2
+    assert {r["patient"] for r in off} == {"00584", "01548", "01551", "00446"}
+    assert max(int(r["corner_bg"]) for r in off) == 10
+    assert not any(r["split"] == "valid" for r in off)

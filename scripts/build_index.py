@@ -8,6 +8,7 @@ from collections import Counter
 from pathlib import Path
 
 import numpy as np
+from brainsentinel.data.palette import train_palette  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 os.chdir(ROOT)
@@ -25,7 +26,8 @@ def key_of(r: dict) -> str:
 
 def main() -> int:
     cfg = load_config()
-    rows = build_rows(cfg)
+    pal = train_palette(cfg)
+    rows = build_rows(cfg, pal)
     overlap = add_flags(rows)
     write_csv(rows, columns(cfg), ROOT / "data" / "processed" / "index.csv")
 
@@ -53,6 +55,9 @@ def main() -> int:
         f"bad={sum(1 for r in rows if not r['dims_ok'])}")
     unk = sum(r["unknown_mask_px"] or 0 for r in rows)
     chk("mask colours all in allowed_rgb", unk == 0, f"unknown px={unk}")
+    tol = max(r["corner_bg"] for r in rows if r["split"] == "train")  # derived from TRAIN only
+    chk("corner bg <= train-derived max", all(r["corner_bg"] <= tol for r in rows),
+        {"train_max": tol, "n_offset": sum(1 for r in rows if r["corner_bg"] > 0)})
 
     good_nonempty = [r["file"] for r in rows if r["class"] == "good" and r["lesion_px"] not in (None, 0)]
     abn_blank = [r["file"] for r in rows if r["class"] == "Ungood" and not r["lesion_px"]]

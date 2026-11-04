@@ -7,6 +7,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from .checks import list_images
+
 
 def pack_rgb(rgb: np.ndarray) -> np.ndarray:
     """(...,3+) uint8 -> (...) uint32 key = R<<16 | G<<8 | B."""
@@ -58,3 +60,24 @@ class Palette:
 
     def decode(self, idx: np.ndarray) -> np.ndarray:
         return self.colors[idx]
+
+
+def corner_bg(idx: np.ndarray) -> int:
+    """Background index estimated from the four corners. Raises if they differ."""
+    c = {int(idx[0, 0]), int(idx[0, -1]), int(idx[-1, 0]), int(idx[-1, -1])}
+    if len(c) != 1:
+        raise ValueError(f"corner pixels differ: {sorted(c)}")
+    return c.pop()
+
+
+def brain_mask(idx: np.ndarray) -> np.ndarray:
+    """HYPOTHESIS: brain = pixels brighter than the per-image corner background."""
+    return idx > corner_bg(idx)
+
+
+def train_palette(cfg: dict) -> Palette:
+    """Palette from train/good only (never valid/test)."""
+    seen = np.zeros(1 << 24, dtype=bool)
+    for p in list_images(cfg, "train/good"):
+        seen[pack_rgb(load_rgb(p)).ravel()] = True
+    return Palette.from_keys(np.flatnonzero(seen))

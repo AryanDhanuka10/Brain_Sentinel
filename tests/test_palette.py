@@ -3,6 +3,12 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from brainsentinel.data.checks import load_config
+from brainsentinel.data.palette import brain_mask, corner_bg, train_palette
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
 from brainsentinel.data.palette import Palette, load_rgb, pack_rgb
 
 TRAIN = Path(__file__).resolve().parents[1] / "data" / "raw" / "Brain" / "train" / "good"
@@ -40,3 +46,28 @@ def test_unseen_colour_raises(pal, imgs):
     bad[0, 0] = cand
     with pytest.raises(ValueError):
         pal.encode(bad)
+
+@pytest.fixture(scope="module")
+def full_pal():
+    cfg = load_config(ROOT / "configs" / "data.yaml")
+    cfg["root"] = str(ROOT / "data" / "raw" / "Brain")
+    return train_palette(cfg)
+
+
+def test_clean_image_mask_unchanged(full_pal):
+    idx = full_pal.encode(load_rgb(TRAIN / "00003_60.png"))
+    assert corner_bg(idx) == 0
+    assert np.array_equal(brain_mask(idx), idx > 0)
+
+
+def test_offset_image_background(full_pal):
+    idx = full_pal.encode(load_rgb(TRAIN / "01548_77.png"))  # measured Day 2: corners all 6
+    assert corner_bg(idx) == 6
+    assert 0.1 < brain_mask(idx).mean() < 0.5  # loose; failing means the background is not uniform
+
+
+def test_nonuniform_corners_raise(full_pal):
+    idx = full_pal.encode(load_rgb(TRAIN / "00003_60.png")).copy()
+    idx[0, 0] = 5
+    with pytest.raises(ValueError):
+        corner_bg(idx)
