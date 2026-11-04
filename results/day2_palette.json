@@ -1,0 +1,35 @@
+{
+  "total_images": 11298,
+  "train_palette_size": 256,
+  "monotone": true,
+  "max_abs_diff_vs_bone_rounded": 1,
+  "per_group": {
+    "test/Ungood": {
+      "n": 3075,
+      "exact": 3075,
+      "colours": 256
+    },
+    "test/good": {
+      "n": 640,
+      "exact": 640,
+      "colours": 256
+    },
+    "train/good": {
+      "n": 7500,
+      "exact": 7500,
+      "colours": 256
+    },
+    "valid/Ungood": {
+      "n": 44,
+      "exact": 44,
+      "colours": 256
+    },
+    "valid/good": {
+      "n": 39,
+      "exact": 39,
+      "colours": 256
+    }
+  },
+  "failures": [],
+  "n_failures": 0
+}
