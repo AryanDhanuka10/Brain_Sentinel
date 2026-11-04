@@ -1,9 +1,9 @@
 {
   "n_files": 500,
-  "pass1_ms_per_image": 0.9,
+  "pass1_ms_per_image": 0.93,
   "pass2_ms_per_image": 0.93,
-  "est_full_train_epoch_read_s_pass1": 6.7,
+  "est_full_train_epoch_read_s_pass1": 7.0,
   "train_cache_RGB_uint8_GiB": 1.21,
   "MemTotal_GiB": 14.81,
-  "MemAvailable_GiB": 6.72
+  "MemAvailable_GiB": 7.34
 }

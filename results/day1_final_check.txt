@@ -4,7 +4,7 @@
 [PASS] pip check clean
 [PASS] running inside the project venv (brain)
 == Tests ==
-[PASS] pytest: ============================= 41 passed in 24.93s ==============================
+[PASS] pytest: ============================= 41 passed in 29.05s ==============================
 [PASS] data manifest matches files on disk
 == Evidence and documents ==
 [PASS] check_env: 9/9 smoke tests PASS
@@ -26,9 +26,9 @@
 [PASS] data/README: license + BMAD citation
 [PASS] data/README: BraTS citation entries
 [PASS] data/README: download source (Drive URL) recorded
-[FAIL] manifest has 11,298 entries
+[PASS] manifest has one entry per image and mask (15096)
 [PASS] data/README records the manifest SHA-256
-[FAIL] requirements.txt: every direct dependency pinned (['pyyaml', 'pytest', 'matplotlib'])
+[PASS] requirements.txt: every direct dependency pinned ([])
 [PASS] requirements-lock.txt pins torch 2.15.0 + torchvision 0.29.2
 [PASS] top README states 'not a diagnosis'
 == Git hygiene ==
@@ -39,7 +39,7 @@
 [PASS] git ignores x.ckpt
 [PASS] git ignores x.pt
 [PASS] git ignores x.npy
-[FAIL] git ignores x.nii.gz
+[PASS] git ignores x.nii.gz
 [PASS] no forbidden paths tracked
 [PASS] no brain/ or data/raw paths about to be added
 [PASS] no untracked non-ignored file over 5 MB
@@ -47,5 +47,5 @@
 [PASS] raw BraTS2021 removed from data/raw
 [INFO] core.fileMode=false (expected false on fuseblk)
 
-PASS=38 FAIL=3
-DAY 1 GATE: FAIL - do not commit
+PASS=41 FAIL=0
+DAY 1 GATE: PASS

@@ -46,6 +46,13 @@ else:
 for k in ("valid/Ungood", "test/Ungood"):
     ms = groups.get(k, {}).get("mask_stats", {})
     L.append(f"- {k} mask RGB values: {ms.get('rgb_values_union_first12', NR)}; empty masks: {ms.get('n_empty_masks', NR)}")
+pc = load("results/day1_palette_check.json")
+if pc:
+    b = pc.get("matches_matplotlib_bone", {})
+    L.append(f"- Palette check (all {pc['n_images_read']} images): {pc['n_unique_rgb_triples_all_images']} distinct RGB values, identical set in every group: "
+             f"{pc['all_groups_use_identical_set']}; alpha always 255: {pc['images_with_alpha_not_255'] == 0}; "
+             f"max abs diff vs matplotlib 'bone' LUT: {b.get('max_abs_diff_observed_to_nearest_lut')} (values off by >1: {b.get('n_observed_diff_gt1')})")
+    L.append("- Reading: one 8-bit intensity rendered through a fixed 256-entry palette. Exact recovery should be possible; verify by round-trip on Day 2.")
 L += ["- Foreground rule: any RGB channel != 0 (alpha ignored); nearest-neighbour for masks.", ""]
 
 L += ["## Lesion size and slice position"]
@@ -62,6 +69,16 @@ if si:
     L.append(f"\n- Mean slice index, test/Ungood minus test/good: {d:+.1f} (a large gap means slice position may confound image-level scores; check Day 2)")
 L.append("")
 
+if si:
+    L += ["## Slice-position balance (10-bin counts; filename suffix assumed to be the slice index)",
+          "| Group | 60s | 70s | 80s | 90s |", "|---|---|---|---|---|"]
+    for k, v in si.items():
+        L.append(f"| {k} | " + " | ".join(str(v["hist_by_10"].get(b, 0)) for b in ("60", "70", "80", "90")) + " |")
+    tg, tu = si["test/good"]["hist_by_10"], si["test/Ungood"]["hist_by_10"]
+    L.append("- Test abnormal share per bin: " + ", ".join(
+        f"{b}s {tu.get(b, 0) / max(1, tu.get(b, 0) + tg.get(b, 0)):.1%}" for b in ("60", "70", "80", "90")))
+    L += ["- Reading: test normals sit almost entirely in the 60s and 90s bins; mid-range bins are ~99% abnormal. "
+          "Slice position can confound image-level scores. Report stratified results; mid-range bins have too few normals for stable AUROC.", ""]
 L += ["## Integrity and leakage",
       f"- Files hashed: {ig.get('n_files_hashed', NR)}; corrupt/zero-byte: {ig.get('corrupt_or_zero_byte', {}).get('count', NR)}; "
       f"identical-pixel groups inside a split: {ig.get('identical_pixels_within_split', {}).get('groups', NR)}",

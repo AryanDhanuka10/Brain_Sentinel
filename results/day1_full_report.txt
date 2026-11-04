@@ -1,0 +1,163 @@
+### DAY 1 FULL REPORT  2026-11-04T09:16:31+05:30
+### branch=main  commit=2da93d7
+### python=/media/aryan-dhanuka/OS/AI Agent Hackathon/Brain_Sentinel/brain/bin/python  Python 3.12.9
+
+### [1] regenerate evidence (log: results/day1_run_all.log)
+run_all exit=0
+palette exit=0
+notes exit=0
+
+### [2] GATE
+== Environment ==
+[PASS] python is 3.12
+[PASS] torch 2.15.0 + torchvision 0.29.2, CUDA sees an RTX 4060
+[PASS] pip check clean
+[PASS] running inside the project venv (brain)
+== Tests ==
+[PASS] pytest: ============================= 41 passed in 26.22s ==============================
+[PASS] data manifest matches files on disk
+== Evidence and documents ==
+[PASS] check_env: 9/9 smoke tests PASS
+[PASS] official split counts 7500/39/44/640/3075
+[PASS] dataset audit has no warnings ([])
+[PASS] patient overlap train/valid/test = 0/0/10
+[PASS] integrity: 11,298 files hashed
+[PASS] integrity: 0 corrupt or zero-byte
+[PASS] integrity: 0 duplicate groups inside a split
+[PASS] integrity: cross-split duplicates are exactly the 10 documented
+[PASS] duplicates: 10 image-identical and 10 mask-identical
+[PASS] I/O benchmark recorded
+[PASS] audit_extra.json present (image_colour, slice_index)
+[INFO] image colour: 256 unique RGB triples; top-256 cover 1.0000; median 233.0/image
+[INFO] valid/test overlap by group: {'valid/good&test/good': 0, 'valid/good&test/Ungood': 0, 'valid/Ungood&test/good': 0, 'valid/Ungood&test/Ungood': 10}
+[PASS] data.yaml parses, ends with newline, one known_issues block
+[PASS] data/README.md: exists, no TBD/placeholder left
+[PASS] results/day1_notes.md: exists, no TBD/placeholder left
+[PASS] data/README: license + BMAD citation
+[PASS] data/README: BraTS citation entries
+[PASS] data/README: download source (Drive URL) recorded
+[PASS] manifest has one entry per image and mask (15096)
+[PASS] data/README records the manifest SHA-256
+[PASS] requirements.txt: every direct dependency pinned ([])
+[PASS] requirements-lock.txt pins torch 2.15.0 + torchvision 0.29.2
+[PASS] top README states 'not a diagnosis'
+== Git hygiene ==
+[PASS] git ignores data/raw/Brain
+[PASS] git ignores data/processed
+[PASS] git ignores artifacts/checkpoints/x/y.bin
+[PASS] git ignores brain
+[PASS] git ignores x.ckpt
+[PASS] git ignores x.pt
+[PASS] git ignores x.npy
+[PASS] git ignores x.nii.gz
+[PASS] no forbidden paths tracked
+[PASS] no brain/ or data/raw paths about to be added
+[PASS] no untracked non-ignored file over 5 MB
+[PASS] no blob over 5 MB in Git history
+[PASS] raw BraTS2021 removed from data/raw
+[INFO] core.fileMode=false (expected false on fuseblk)
+
+PASS=41 FAIL=0
+DAY 1 GATE: PASS
+gate exit=0
+
+### [3] pytest tail
+tests/test_day1_data_contract.py::test_sensitivity_exclusion_set_size PASSED [100%]
+
+============================= 41 passed in 26.22s ==============================
+
+### [4] manifest breakdown (expect 15096 total)
+15096 data/MANIFEST.sha256
+  3075  test/Ungood/img
+  3075  test/Ungood/label
+   640  test/good/img
+   640  test/good/label
+  7500  train/good
+    44  valid/Ungood/img
+    44  valid/Ungood/label
+    39  valid/good/img
+    39  valid/good/label
+
+### [5] slice-index histograms (per 10)
+train/good {'60': 2082, '70': 1551, '80': 1629, '90': 2238}
+valid/good {'60': 21, '90': 18}
+valid/Ungood {'60': 11, '70': 11, '80': 11, '90': 11}
+test/good {'60': 361, '70': 5, '80': 8, '90': 266}
+test/Ungood {'60': 1230, '70': 615, '80': 615, '90': 615}
+
+### [6] palette check
+{
+  "n_images_read": 11298,
+  "images_with_alpha_not_255": 0,
+  "n_unique_rgb_triples_all_images": 256,
+  "unique_per_group": {
+    "train/good": 256,
+    "valid/good": 256,
+    "valid/Ungood": 256,
+    "test/good": 256,
+    "test/Ungood": 256
+  },
+  "all_groups_use_identical_set": true,
+  "black_present": true,
+  "n_gray_triples_R_eq_G_eq_B": 2,
+  "monotone_non_decreasing_by_luminance": {
+    "R": true,
+    "G": true,
+    "B": true
+  },
+  "matches_matplotlib_bone": {
+    "max_abs_diff_observed_to_nearest_lut": 1,
+    "n_observed_diff_gt1": 0,
+    "every_lut_entry_matched_within_1": true
+  }
+}
+### [7] key lines of day1_notes.md
+- Smoke tests: 9/9 PASS
+- Audit warnings: []
+- Colour structure (383 sampled images): 256 unique RGB triples; top-256 triples cover 1.0000 of pixels; median 233.0 unique per image; mean pure-black fraction 0.716
+- valid/Ungood lesion px (p5/25/50/75/95): [323.8, 1064.25, 2203.5, 3111.0, 4055.5000000000005] | min 10 max 4822 | <10px: 0, <50px: 1, <100px: 2 of 44
+- test/Ungood lesion px (p5/25/50/75/95): [307.0, 1299.0, 2139.0, 3005.0, 4214.0] | min 1 max 6333 | <10px: 12, <50px: 43, <100px: 67 of 3075
+- Mean slice index, test/Ungood minus test/good: -1.0 (a large gap means slice position may confound image-level scores; check Day 2)
+- Files hashed: 11298; corrupt/zero-byte: 0; identical-pixel groups inside a split: 0
+- Identical-pixel groups across splits: 10 (valid/Ungood <-> test/Ungood)
+
+### [8] repo state
+-- data/raw:
+Brain
+425M	data/raw/Brain
+-- manifest sha256: 76d22b675cdc2d442e5a73bb4851244b47d71a0aaaff229078f0917aef908c9e
+-- README records it: 1
+-- requirements.txt (non-comment):
+torch==2.15.0          # default PyPI wheel, CUDA 13.2 build; fallback = prior release, cu130 build
+torchvision==0.29.2
+numpy==2.5.4
+pillow==13.0.0
+pyyaml==6.0.3
+pytest==9.2.0
+matplotlib==3.11.2
+-- git status:
+ M .gitignore
+ M requirements.txt
+ M results/day1/bench_io_stdout.txt
+ M results/day1/pytest.txt
+ M results/day1_final_check.txt
+ M results/day1_git_check.txt
+ M results/day1_io_bench.json
+ M results/day1_notes.md
+ M scripts/day1_final_check.sh
+?? results/day1/palette_stdout.txt
+?? results/day1_full_report.txt
+?? results/day1_palette_check.json
+?? scripts/audit_palette.py
+?? scripts/day1_apply_pending_fixes.sh
+?? scripts/day1_report.sh
+-- ignore rules:
+.gitignore:238:*.nii.gz	x.nii.gz
+.gitignore:9:data/raw	data/raw/Brain
+.gitignore:20:brain/	brain
+-- last commits / tags:
+2da93d7 minor commit
+865f659 Day 1: verified environment, audited BMAD Brain data, added data-contract tests
+5e5cda8 Initial commit
+
+### END OF REPORT

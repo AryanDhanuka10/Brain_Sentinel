@@ -77,7 +77,8 @@ t("data/README: license + BMAD citation", "CC BY-NC-SA" in rd and "2306.11876" i
 t("data/README: BraTS citation entries", bool(re.search(r"Menze|Bakas|Baid|2107\.02314", rd)))
 t("data/README: download source (Drive URL) recorded", "drive.google.com" in rd)
 mf = Path("data/MANIFEST.sha256")
-t("manifest has 11,298 entries", mf.exists() and len(mf.read_text().splitlines()) == 11298)
+n_exp = sum(x.get("n_images", 0) + x.get("n_masks", 0) for x in aud.get("groups", {}).values())
+t(f"manifest has one entry per image and mask ({n_exp})", mf.exists() and len(mf.read_text().splitlines()) == n_exp)
 t("data/README records the manifest SHA-256", mf.exists() and hashlib.sha256(mf.read_bytes()).hexdigest() in rd)
 
 req = [l.split("#")[0].strip() for l in read("requirements.txt").splitlines()]

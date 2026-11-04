@@ -1,0 +1,25 @@
+{
+  "n_images_read": 11298,
+  "images_with_alpha_not_255": 0,
+  "n_unique_rgb_triples_all_images": 256,
+  "unique_per_group": {
+    "train/good": 256,
+    "valid/good": 256,
+    "valid/Ungood": 256,
+    "test/good": 256,
+    "test/Ungood": 256
+  },
+  "all_groups_use_identical_set": true,
+  "black_present": true,
+  "n_gray_triples_R_eq_G_eq_B": 2,
+  "monotone_non_decreasing_by_luminance": {
+    "R": true,
+    "G": true,
+    "B": true
+  },
+  "matches_matplotlib_bone": {
+    "max_abs_diff_observed_to_nearest_lut": 1,
+    "n_observed_diff_gt1": 0,
+    "every_lut_entry_matched_within_1": true
+  }
+}

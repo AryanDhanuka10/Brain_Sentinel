@@ -24,6 +24,8 @@
 - Reading: <=256 unique triples suggests a lookup-table rendering (test intensity recovery on Day 2).
 - valid/Ungood mask RGB values: [[0, 0, 0], [56, 55, 77], [112, 123, 143], [255, 255, 255]]; empty masks: 0
 - test/Ungood mask RGB values: [[0, 0, 0], [56, 55, 77], [112, 123, 143], [255, 255, 255]]; empty masks: 0
+- Palette check (all 11298 images): 256 distinct RGB values, identical set in every group: True; alpha always 255: True; max abs diff vs matplotlib 'bone' LUT: 1 (values off by >1: 0)
+- Reading: one 8-bit intensity rendered through a fixed 256-entry palette. Exact recovery should be possible; verify by round-trip on Day 2.
 - Foreground rule: any RGB channel != 0 (alpha ignored); nearest-neighbour for masks.
 
 ## Lesion size and slice position
@@ -40,6 +42,17 @@
 
 - Mean slice index, test/Ungood minus test/good: -1.0 (a large gap means slice position may confound image-level scores; check Day 2)
 
+## Slice-position balance (10-bin counts; filename suffix assumed to be the slice index)
+| Group | 60s | 70s | 80s | 90s |
+|---|---|---|---|---|
+| train/good | 2082 | 1551 | 1629 | 2238 |
+| valid/good | 21 | 0 | 0 | 18 |
+| valid/Ungood | 11 | 11 | 11 | 11 |
+| test/good | 361 | 5 | 8 | 266 |
+| test/Ungood | 1230 | 615 | 615 | 615 |
+- Test abnormal share per bin: 60s 77.3%, 70s 99.2%, 80s 98.7%, 90s 69.8%
+- Reading: test normals sit almost entirely in the 60s and 90s bins; mid-range bins are ~99% abnormal. Slice position can confound image-level scores. Report stratified results; mid-range bins have too few normals for stable AUROC.
+
 ## Integrity and leakage
 - Files hashed: 11298; corrupt/zero-byte: 0; identical-pixel groups inside a split: 0
 - Identical-pixel groups across splits: 10 (valid/Ungood <-> test/Ungood)
@@ -48,7 +61,7 @@
 - Train is disjoint from valid and test; official splits unmodified. Plan: official test metrics plus a patient-disjoint sensitivity run (50 test images excluded; see configs/data.yaml).
 
 ## I/O
-- {'n_files': 500, 'pass1_ms_per_image': 0.9, 'pass2_ms_per_image': 0.93, 'est_full_train_epoch_read_s_pass1': 6.7, 'train_cache_RGB_uint8_GiB': 1.21, 'MemTotal_GiB': 14.81, 'MemAvailable_GiB': 6.72}
+- {'n_files': 500, 'pass1_ms_per_image': 0.93, 'pass2_ms_per_image': 0.93, 'est_full_train_epoch_read_s_pass1': 7.0, 'train_cache_RGB_uint8_GiB': 1.21, 'MemTotal_GiB': 14.81, 'MemAvailable_GiB': 7.34}
 
 ## Open decisions for Day 2/3
 - Image channel handling (RGB as data vs recovered intensity)

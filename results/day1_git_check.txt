@@ -8,7 +8,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 data/raw
-data/processed 
+data/processed
 artifacts/*
 !artifacts/.gitkeep
 *.ckpt
@@ -235,6 +235,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+*.nii
+*.nii.gz
 == check-ignore (each path must show a rule) ==
 IGNORED      .gitignore:9:data/raw	data/raw/Brain
 IGNORED      .gitignore:9:data/raw	data/raw/BraTS2021
@@ -245,12 +247,12 @@ IGNORED      .gitignore:171:.venv	.venv
 IGNORED      .gitignore:13:*.ckpt	x.ckpt
 IGNORED      .gitignore:14:*.pt	x.pt
 IGNORED      .gitignore:16:*.npy	x.npy
-NOT IGNORED  x.nii.gz
+IGNORED      .gitignore:238:*.nii.gz	x.nii.gz
 == tracked files that must NOT be tracked (expect empty) ==
 == blobs >5MB anywhere in history (expect empty) ==
 == untracked, not-ignored files >5MB (expect empty) ==
 == status entries ==
-13
+14
 == data/raw contents (BraTS2021 should be gone) ==
 425M	data/raw/Brain
 == core.fileMode ==

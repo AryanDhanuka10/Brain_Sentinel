@@ -47,4 +47,4 @@ tests/test_day1_data_contract.py::test_cross_split_filename_collisions_are_exact
 tests/test_day1_data_contract.py::test_documented_duplicates_are_byte_identical_ungood_images PASSED [ 97%]
 tests/test_day1_data_contract.py::test_sensitivity_exclusion_set_size PASSED [100%]
 
-============================= 41 passed in 24.93s ==============================
+============================= 41 passed in 29.05s ==============================

@@ -36,6 +36,10 @@ Masks: RGB in {(0,0,0),(56,55,77),(112,123,143),(255,255,255)}. Foreground = RGB
   40 of 44 valid abnormal images (10 of 11 valid/Ungood patients) share patients with test; 50 test images are affected.
 - Train is disjoint from valid and test. Official splits are unmodified. Thresholds chosen on valid may be slightly
   optimistic for test. Report official test metrics AND a patient-disjoint sensitivity run (50 test images excluded).
+- Slice position (filename suffix, assumed to be the slice index): abnormal test slices sit at positions 60/68/76/84/92 (5 per patient);
+  98% of test normals (361 + 266 of 640) are in the 60s and 90s bins, with only 13 in 70-89, so that range is ~99% abnormal.
+  Image-level scores can be confounded by slice position: report slice-stratified results. Valid normals (21 in 60s, 18 in 90s) share this limitation.
+- Image colour: one 8-bit intensity rendered through a fixed 256-entry palette (matches matplotlib 'bone' within 1/255 per channel; all 11,298 images).
 - Validation has only 83 slices, so threshold estimates are noisy.
 - Test is 82.8% abnormal; lesions range down to about 1 pixel.
 - Patient ID = filename prefix (assumption, not documented by the source); slice index = filename suffix (same caveat).
