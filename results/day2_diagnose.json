@@ -1,0 +1,114 @@
+{
+  "n_corner_cases": 33,
+  "corner_cases_by_group": {
+    "train/good": 31,
+    "valid/good": 0,
+    "valid/Ungood": 0,
+    "test/good": 0,
+    "test/Ungood": 2
+  },
+  "groups": {
+    "train/good": {
+      "n": 7500,
+      "mean_brain_idx_q25_50_75": [
+        91.115,
+        114.203,
+        139.489
+      ],
+      "grad_in_brain_q25_50_75": [
+        12.897,
+        14.769,
+        16.476
+      ],
+      "share_idx1to8_in_brain_q25_50_75": [
+        0.0,
+        0.002,
+        0.006
+      ]
+    },
+    "valid/good": {
+      "n": 39,
+      "mean_brain_idx_q25_50_75": [
+        105.285,
+        123.845,
+        160.451
+      ],
+      "grad_in_brain_q25_50_75": [
+        13.108,
+        14.453,
+        16.294
+      ],
+      "share_idx1to8_in_brain_q25_50_75": [
+        0.0,
+        0.001,
+        0.003
+      ]
+    },
+    "valid/Ungood": {
+      "n": 44,
+      "mean_brain_idx_q25_50_75": [
+        80.343,
+        98.513,
+        113.282
+      ],
+      "grad_in_brain_q25_50_75": [
+        9.414,
+        11.154,
+        13.225
+      ],
+      "share_idx1to8_in_brain_q25_50_75": [
+        0.001,
+        0.003,
+        0.007
+      ]
+    },
+    "test/good": {
+      "n": 640,
+      "mean_brain_idx_q25_50_75": [
+        98.142,
+        115.867,
+        131.534
+      ],
+      "grad_in_brain_q25_50_75": [
+        12.553,
+        15.145,
+        16.778
+      ],
+      "share_idx1to8_in_brain_q25_50_75": [
+        0.0,
+        0.001,
+        0.003
+      ]
+    },
+    "test/Ungood": {
+      "n": 3075,
+      "mean_brain_idx_q25_50_75": [
+        81.125,
+        102.548,
+        122.742
+      ],
+      "grad_in_brain_q25_50_75": [
+        10.267,
+        11.865,
+        13.621
+      ],
+      "share_idx1to8_in_brain_q25_50_75": [
+        0.001,
+        0.003,
+        0.008
+      ]
+    }
+  },
+  "train_resampling_median_mean_brain_idx_2.5_50_97.5": {
+    "39 patients x 1 slice (cf. valid/good)": [
+      101.74,
+      115.12,
+      130.18
+    ],
+    "11 patients x 4 slices (cf. valid/Ungood)": [
+      92.11,
+      114.54,
+      139.89
+    ]
+  }
+}

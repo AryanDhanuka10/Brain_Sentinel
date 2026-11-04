@@ -1,0 +1,145 @@
+{
+  "palette_index0_black": true,
+  "images_with_nonblack_corner": 33,
+  "lesion_px_on_index0": {
+    "valid/Ungood": {
+      "on_black": 0,
+      "lesion": 93756,
+      "share": 0.0,
+      "images_with_any": 0,
+      "max_per_image_share": 0.0
+    },
+    "test/Ungood": {
+      "on_black": 184,
+      "lesion": 6731065,
+      "share": 2.7335941637764604e-05,
+      "images_with_any": 16,
+      "max_per_image_share": 0.012445785404488026
+    }
+  },
+  "brain_fraction_mean_n": {
+    "train/good": {
+      "60s": [
+        0.2805,
+        2082
+      ],
+      "70s": [
+        0.3025,
+        1551
+      ],
+      "80s": [
+        0.3011,
+        1629
+      ],
+      "90s": [
+        0.2775,
+        2238
+      ]
+    },
+    "valid/good": {
+      "60s": [
+        0.2596,
+        21
+      ],
+      "90s": [
+        0.2591,
+        18
+      ]
+    },
+    "valid/Ungood": {
+      "60s": [
+        0.2758,
+        11
+      ],
+      "70s": [
+        0.2971,
+        11
+      ],
+      "80s": [
+        0.2983,
+        11
+      ],
+      "90s": [
+        0.2834,
+        11
+      ]
+    },
+    "test/good": {
+      "60s": [
+        0.2814,
+        361
+      ],
+      "70s": [
+        0.3242,
+        5
+      ],
+      "80s": [
+        0.3077,
+        8
+      ],
+      "90s": [
+        0.268,
+        266
+      ]
+    },
+    "test/Ungood": {
+      "60s": [
+        0.2872,
+        1230
+      ],
+      "70s": [
+        0.3053,
+        615
+      ],
+      "80s": [
+        0.3013,
+        615
+      ],
+      "90s": [
+        0.2865,
+        615
+      ]
+    }
+  },
+  "emd_vs_train_good_overall": {
+    "valid/good": 15.862,
+    "valid/Ungood": 18.563,
+    "test/good": 3.751,
+    "test/Ungood": 13.046
+  },
+  "emd_vs_train_good_same_bin": {
+    "valid/good": {
+      "60s": 7.193,
+      "90s": 21.277
+    },
+    "valid/Ungood": {
+      "60s": 13.766,
+      "70s": 16.799,
+      "80s": 16.691,
+      "90s": 25.637
+    },
+    "test/good": {
+      "60s": 1.964,
+      "70s": 23.166,
+      "80s": 12.488,
+      "90s": 4.652
+    },
+    "test/Ungood": {
+      "60s": 8.418,
+      "70s": 10.713,
+      "80s": 12.677,
+      "90s": 19.342
+    }
+  },
+  "good_vs_ungood_patient_overlap": {
+    "valid": 0,
+    "test": 0
+  },
+  "patients_per_group": {
+    "train/good": 424,
+    "valid/good": 39,
+    "valid/Ungood": 11,
+    "test/good": 162,
+    "test/Ungood": 615
+  }
+}
