@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 os.chdir(ROOT)
 sys.path.insert(0, str(ROOT / "src"))
 from brainsentinel.data.checks import load_config, mask_path, mask_to_binary, split_dir  # noqa: E402
-from brainsentinel.data.palette import Palette, load_rgb, pack_rgb  # noqa: E402
+from brainsentinel.data.palette import Palette, brain_mask, corner_bg, load_rgb, pack_rgb  # noqa: E402
 
 OUT = ROOT / "artifacts" / "day2"
 GROUPS = ["train/good", "valid/good", "valid/Ungood", "test/good", "test/Ungood"]
@@ -46,6 +46,7 @@ def main() -> int:
     pal = Palette.from_keys(np.flatnonzero(seen))
     assert tuple(pal.colors[0]) == (0, 0, 0), f"index 0 is {pal.colors[0]}, not black"
 
+    tol = max(int(r["corner_bg"]) for r in rows if r["split"] == "train")  # from TRAIN only
     hist = defaultdict(lambda: np.zeros(256, dtype=np.int64))  # (group, bin) -> brain-pixel counts
     bf = defaultdict(list)  # (group, bin) -> brain fraction per image
     corner_bad = 0
@@ -53,14 +54,14 @@ def main() -> int:
     per_img_black: dict[tuple, float] = {}
     for r in rows:
         idx = pal.encode(load_rgb(path_of(r)))
-        corner_bad += int(any(idx[y, x] != 0 for y in (0, -1) for x in (0, -1)))
-        brain = idx > 0
+        corner_bad += int(corner_bg(idx) > tol)
+        brain = brain_mask(idx)
         k = (r["g"], r["slice_bin"])
         hist[k] += np.bincount(idx[brain], minlength=256)
         bf[k].append(float(brain.mean()))
         if r["class"] == "Ungood":
             m = mask_to_binary(np.asarray(Image.open(mask_path(cfg, r["g"], path_of(r))).convert("RGBA")))
-            n, nb = int(m.sum()), int(((m == 1) & (idx == 0)).sum())
+            n, nb = int(m.sum()), int(((m == 1) & ~brain).sum())
             black["lesion"][r["g"]] += n
             black["on_black"][r["g"]] += nb
             per_img_black[(r["g"], r["file"])] = nb / n
@@ -85,7 +86,7 @@ def main() -> int:
     fig, ax = plt.subplots(1, 2, figsize=(13, 4))
     for g in GROUPS:
         ax[0].plot(allh[g] / allh[g].sum(), label=g, lw=1)
-    ax[0].set(title="brain-pixel intensity index (index>0), normalized", xlabel="index", ylabel="density")
+    ax[0].set(title="brain-pixel intensity index (index>corner bg), normalized", xlabel="index", ylabel="density")
     ax[0].legend(fontsize=7)
     for g in GROUPS:
         ax[1].plot(BINS, [np.mean(bf[(g, b)]) if bf[(g, b)] else np.nan for b in BINS], marker="o", label=g)

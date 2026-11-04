@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 os.chdir(ROOT)
 sys.path.insert(0, str(ROOT / "src"))
 from brainsentinel.data.checks import load_config, split_dir  # noqa: E402
-from brainsentinel.data.palette import Palette, load_rgb, pack_rgb  # noqa: E402
+from brainsentinel.data.palette import Palette, brain_mask, load_rgb, pack_rgb  # noqa: E402
 
 GROUPS = ["train/good", "valid/good", "valid/Ungood", "test/good", "test/Ungood"]
 
@@ -57,12 +57,12 @@ def main() -> int:
         c = [int(idx[0, 0]), int(idx[0, -1]), int(idx[-1, 0]), int(idx[-1, -1])]
         if any(c):
             corner_cases.append((g, r["file"], c))
-        brain = idx > 0  # HYPOTHESIS: brain = index > 0
+        brain = brain_mask(idx)  # HYPOTHESIS: brighter than corner background
         nb = int(brain.sum())
         gy, gx = np.gradient(idx.astype(np.float32))
         F[g]["mean"].append(float(idx[brain].mean()) if nb else np.nan)
         F[g]["sharp"].append(float(np.hypot(gx, gy)[brain].mean()) if nb else np.nan)
-        F[g]["low"].append(float(((idx >= 1) & (idx <= 8)).sum() / nb) if nb else np.nan)
+        F[g]["low"].append(float((brain & (idx <= 8)).sum() / nb) if nb else np.nan)
         F[g]["pat"].append(r["patient"])
 
     q = lambda a: [round(float(x), 3) for x in np.nanpercentile(a, [25, 50, 75])]  # noqa: E731
