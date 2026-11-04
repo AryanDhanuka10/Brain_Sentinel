@@ -1,0 +1,181 @@
+{
+  "rows": 11298,
+  "per_split": {
+    "train/good": 7500,
+    "valid/good": 39,
+    "valid/Ungood": 44,
+    "test/good": 640,
+    "test/Ungood": 3075
+  },
+  "within_split_duplicate_rows": 0,
+  "slice_bins": {
+    "train/good": {
+      "60s": 2082,
+      "70s": 1551,
+      "90s": 2238,
+      "80s": 1629
+    },
+    "valid/good": {
+      "90s": 18,
+      "60s": 21
+    },
+    "valid/Ungood": {
+      "60s": 11,
+      "70s": 11,
+      "80s": 11,
+      "90s": 11
+    },
+    "test/good": {
+      "90s": 266,
+      "60s": 361,
+      "80s": 8,
+      "70s": 5
+    },
+    "test/Ungood": {
+      "60s": 1230,
+      "70s": 615,
+      "80s": 615,
+      "90s": 615
+    }
+  },
+  "lesion_px": {
+    "valid/Ungood": {
+      "n": 44,
+      "min": 10,
+      "median": 2203.5,
+      "max": 4822,
+      "n_lt100": 2
+    },
+    "test/Ungood": {
+      "n": 3075,
+      "min": 1,
+      "median": 2139.0,
+      "max": 6333,
+      "n_lt100": 67
+    }
+  },
+  "fg_pixel_share": {
+    "valid/good": {
+      "fg_56_55_77": null,
+      "fg_112_123_143": null,
+      "fg_255_255_255": null
+    },
+    "valid/Ungood": {
+      "fg_56_55_77": 0.2212,
+      "fg_112_123_143": 0.4588,
+      "fg_255_255_255": 0.32
+    },
+    "test/good": {
+      "fg_56_55_77": null,
+      "fg_112_123_143": null,
+      "fg_255_255_255": null
+    },
+    "test/Ungood": {
+      "fg_56_55_77": 0.1492,
+      "fg_112_123_143": 0.494,
+      "fg_255_255_255": 0.3567
+    }
+  },
+  "checks": [
+    {
+      "name": "rows per split == expected_n",
+      "ok": true,
+      "detail": {
+        "train/good": 7500,
+        "valid/good": 39,
+        "valid/Ungood": 44,
+        "test/good": 640,
+        "test/Ungood": 3075
+      }
+    },
+    {
+      "name": "total rows",
+      "ok": true,
+      "detail": "11298 vs 11298"
+    },
+    {
+      "name": "image-mask pairing 1:1",
+      "ok": true,
+      "detail": {
+        "valid/good": {
+          "masks_without_image": 0,
+          "images_without_mask": 0
+        },
+        "valid/Ungood": {
+          "masks_without_image": 0,
+          "images_without_mask": 0
+        },
+        "test/good": {
+          "masks_without_image": 0,
+          "images_without_mask": 0
+        },
+        "test/Ungood": {
+          "masks_without_image": 0,
+          "images_without_mask": 0
+        }
+      }
+    },
+    {
+      "name": "all dims == image_size",
+      "ok": true,
+      "detail": "bad=0"
+    },
+    {
+      "name": "mask colours all in allowed_rgb",
+      "ok": true,
+      "detail": "unknown px=0"
+    },
+    {
+      "name": "good masks all empty",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "no blank abnormal masks",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "train patients disjoint from valid/test",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "valid\u2229test patients == config ids",
+      "ok": true,
+      "detail": {
+        "extra": [],
+        "missing": []
+      }
+    },
+    {
+      "name": "valid/Ungood overlap rows == 40 (Day 1)",
+      "ok": true,
+      "detail": {
+        "valid/Ungood": 40,
+        "test/Ungood": 50
+      }
+    },
+    {
+      "name": "test overlap rows == config",
+      "ok": true,
+      "detail": {
+        "valid/Ungood": 40,
+        "test/Ungood": 50
+      }
+    },
+    {
+      "name": "cross-split duplicates == config list",
+      "ok": true,
+      "detail": {
+        "files": 10,
+        "rows": 20
+      }
+    },
+    {
+      "name": "no train row in a cross-split duplicate",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}
