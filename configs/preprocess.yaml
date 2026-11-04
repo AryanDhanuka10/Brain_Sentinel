@@ -1,0 +1,11 @@
+# Day 3 preprocessing. Decisions fixed BEFORE any model result; change only with a written reason.
+# Fixed in code, not configurable (so they cannot drift): native 240x240 (no resize; masks are never
+# resized), gray index/255 replicated x3, per-image corner-background subtraction, no augmentation,
+# no histogram equalisation. RGB tint = Day 8 ablation.
+index_csv: data/processed/index.csv
+input:
+  size: 240
+normalize:
+  mode: imagenet            # imagenet = fixed constants (no fitting). train_stats = scalar mean/std from
+                            # scripts/fit_norm_stats.py (train/good brain pixels only), for the autoencoder.
+  train_stats_path: data/processed/norm_stats.json

@@ -9,6 +9,8 @@ from PIL import Image
 
 from .checks import list_images
 
+MAX_BG = 10  # train-derived (Day 2): offset backgrounds are 1..10
+
 
 def pack_rgb(rgb: np.ndarray) -> np.ndarray:
     """(...,3+) uint8 -> (...) uint32 key = R<<16 | G<<8 | B."""
@@ -18,7 +20,8 @@ def pack_rgb(rgb: np.ndarray) -> np.ndarray:
 
 def load_rgb(path: Path) -> np.ndarray:
     """Load a PNG as (H, W, 3) uint8. Raises if not RGBA with alpha == 255."""
-    arr = np.asarray(Image.open(path).convert("RGBA"))
+    with Image.open(path) as im:
+        arr = np.asarray(im.convert("RGBA"))
     if arr.ndim != 3 or arr.shape[2] != 4:
         raise ValueError(f"{path}: unexpected shape {arr.shape}")
     if not (arr[..., 3] == 255).all():
@@ -67,7 +70,10 @@ def corner_bg(idx: np.ndarray) -> int:
     c = {int(idx[0, 0]), int(idx[0, -1]), int(idx[-1, 0]), int(idx[-1, -1])}
     if len(c) != 1:
         raise ValueError(f"corner pixels differ: {sorted(c)}")
-    return c.pop()
+    v = c.pop()
+    if v > MAX_BG:
+        raise ValueError(f"corner background {v} exceeds train-derived tolerance {MAX_BG}")
+    return v
 
 
 def brain_mask(idx: np.ndarray) -> np.ndarray:
@@ -80,4 +86,7 @@ def train_palette(cfg: dict) -> Palette:
     seen = np.zeros(1 << 24, dtype=bool)
     for p in list_images(cfg, "train/good"):
         seen[pack_rgb(load_rgb(p)).ravel()] = True
-    return Palette.from_keys(np.flatnonzero(seen))
+    pal = Palette.from_keys(np.flatnonzero(seen))
+    if len(pal.colors) != 256 or not pal.is_monotone():
+        raise ValueError(f"train palette must be 256 monotone colours, got {len(pal.colors)} (monotone={pal.is_monotone()})")
+    return pal
