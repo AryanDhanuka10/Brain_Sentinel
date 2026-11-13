@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    environment:
+      BRAINSENTINEL_MODEL_DIR: ${BRAINSENTINEL_MODEL_DIR:-/app/artifacts/models/selected}
+    volumes: ["./artifacts:/app/artifacts"]
+    ports: ["8000:8000"]
+  web:
+    build: ./frontend
+    depends_on: [api]
+    ports: ["8080:80"]

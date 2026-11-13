@@ -1,0 +1,97 @@
+trained padim_rand100_s0: 20.3s, checkpoint 45.3 MB, peak VRAM 0.3814692497253418
+{
+  "run": "padim_rand100_s0",
+  "split": "valid",
+  "image": {
+    "image_auroc": 0.8735431235431236,
+    "image_aupr": 0.8927759914022443
+  },
+  "pixel": {
+    "pixel_auroc": 0.9713628536590417,
+    "pixel_aupr": 0.3609375419331851,
+    "aupro_fpr0.3": 0.8156187320398949,
+    "dice_per_image": 0.4478831768890837,
+    "iou_per_image": 0.32291640586513926
+  },
+  "engineering": {
+    "latency_ms_mean": 1.119910939669353,
+    "latency_ms_p95": 1.1329401990224142,
+    "throughput_img_per_s": 892.9281468535739,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.0538482666015625,
+    "peak_cpu_rss_gb": 1.69439697265625,
+    "train_runtime_s": 20.304430369997135,
+    "train_peak_vram_gb": 0.3814692497253418,
+    "checkpoint_mb": 45.3347225189209
+  }
+}
+PCA: 384 -> 278 dims, explained 0.9902
+trained padim_pca99_s0: 19.6s, checkpoint 277.4 MB, peak VRAM 2.6738672256469727
+{
+  "run": "padim_pca99_s0",
+  "split": "valid",
+  "image": {
+    "image_auroc": 0.9044289044289044,
+    "image_aupr": 0.9260588169872073
+  },
+  "pixel": {
+    "pixel_auroc": 0.9740776349581941,
+    "pixel_aupr": 0.42047750991049504,
+    "aupro_fpr0.3": 0.8345260304295266,
+    "dice_per_image": 0.43702234795499684,
+    "iou_per_image": 0.31984123606079734
+  },
+  "engineering": {
+    "latency_ms_mean": 2.2749514798488235,
+    "latency_ms_p95": 2.3116467495128745,
+    "throughput_img_per_s": 439.5698145027922,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.282926082611084,
+    "peak_cpu_rss_gb": 2.0022964477539062,
+    "train_runtime_s": 19.614229067999986,
+    "train_peak_vram_gb": 2.6738672256469727,
+    "checkpoint_mb": 277.356990814209
+  }
+}
+PCA: 384 -> 158 dims, explained 0.9504
+trained padim_pca95_s0: 19.1s, checkpoint 97.1 MB, peak VRAM 0.8957819938659668
+{
+  "run": "padim_pca95_s0",
+  "split": "valid",
+  "image": {
+    "image_auroc": 0.9020979020979021,
+    "image_aupr": 0.9196691497799623
+  },
+  "pixel": {
+    "pixel_auroc": 0.9708534306239781,
+    "pixel_aupr": 0.3675097281956949,
+    "aupro_fpr0.3": 0.8167533917393209,
+    "dice_per_image": 0.44178612820980895,
+    "iou_per_image": 0.32294092610011527
+  },
+  "engineering": {
+    "latency_ms_mean": 1.4795026402862277,
+    "latency_ms_p95": 1.5054014498673496,
+    "throughput_img_per_s": 675.9028154262286,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.10653305053710938,
+    "peak_cpu_rss_gb": 2.0035781860351562,
+    "train_runtime_s": 19.09073664400057,
+    "train_peak_vram_gb": 0.8957819938659668,
+    "checkpoint_mb": 97.14275741577148
+  }
+}
+# PCA experiments: padim (validation only)
+
+| Variant | dims | explained var. | Image AUROC | Pixel AUROC | AUPRO | Dice | Latency ms | Peak VRAM GB | Model MB | Fit s | Decision vs no-PCA |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| nopca384 | 384 | n/a | 0.9120 | 0.9758 | 0.8420 | 0.4409 | 3.1 | 0.52 | 518.2 | 24.1 | baseline |
+| rand100 | 100 | n/a | 0.8735 | 0.9714 | 0.8156 | 0.4479 | 1.1 | 0.05 | 45.3 | 20.3 | REJECT |
+| pca99 | 278 | 0.9902 | 0.9044 | 0.9741 | 0.8345 | 0.4370 | 2.3 | 0.28 | 277.4 | 19.6 | KEEP |
+| pca95 | 158 | 0.9504 | 0.9021 | 0.9709 | 0.8168 | 0.4418 | 1.5 | 0.11 | 97.1 | 19.1 | REJECT |
+
+Rule: keep only if every quality drop (image AUROC, pixel AUROC, AUPRO) <= 0.01 AND latency or model size improves >= 20 %.
+

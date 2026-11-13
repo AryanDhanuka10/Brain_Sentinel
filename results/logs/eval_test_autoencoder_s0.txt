@@ -1,0 +1,27 @@
+{
+  "run": "autoencoder_s0",
+  "split": "test",
+  "image": {
+    "image_auroc": 0.2539758638211382,
+    "image_aupr": 0.7208748085309744
+  },
+  "pixel": {
+    "pixel_auroc": 0.85416922189286,
+    "pixel_aupr": 0.09853487239818404,
+    "aupro_fpr0.3": 0.5920934311502876,
+    "dice_per_image": 0.2070736696290102,
+    "iou_per_image": 0.11922137317353272
+  },
+  "engineering": {
+    "latency_ms_mean": 0.6896178198803682,
+    "latency_ms_p95": 0.6958130514249206,
+    "throughput_img_per_s": 1450.0785379552337,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.011312484741210938,
+    "peak_cpu_rss_gb": 3.3156814575195312,
+    "train_runtime_s": 642.877542485,
+    "train_peak_vram_gb": 0.29993104934692383,
+    "checkpoint_mb": 5.30985164642334
+  }
+}

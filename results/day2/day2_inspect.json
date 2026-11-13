@@ -1,6 +1,6 @@
 {
   "palette_index0_black": true,
-  "images_with_nonblack_corner": 0,
+  "images_with_corner_above_train_tolerance": 0,
   "lesion_px_on_index0": {
     "valid/Ungood": {
       "on_black": 0,

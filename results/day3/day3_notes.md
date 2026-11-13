@@ -20,7 +20,7 @@
 - Real-file test facts that passed: lengths 7500/83/3715; sensitivity exclusion leaves 3665; valid lesions
   0 px outside brain; 67 test lesions < 100 px keep their pixels; masks binary and equal to index lesion_px
   (all valid, every 37th test item); 01548_77 background 6 -> 0.
-- norm_stats.json (train/good brain pixels): mean TBD, std TBD, n_pixels TBD, file_list_sha256 TBD.
+- norm_stats.json (train/good brain pixels; values pasted by the user from data/processed/norm_stats.json on 2026-11-07): mean 0.4521471655, std 0.1803897362, n_images 7500, n_pixels 123,420,394, file_list_sha256 66b85104339dac10e3f58b6df11adb276c6ee262ba2807703ff99b801d59d9f7. The file is gitignored (data/processed), so this record is its only versioned trace.
 - Full-corpus audit (scripts/audit_day3.py, results/day3_audit.json): hard problems TBD;
   Day 2 reproduction valid TBD / test TBD; brain fraction train TBD, valid/good TBD (Day 2 open item, untested).
 

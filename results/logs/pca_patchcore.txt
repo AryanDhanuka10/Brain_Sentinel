@@ -1,0 +1,68 @@
+PCA: 384 -> 250 dims, explained 0.9900
+trained patchcore_pca99_s0: 368.2s, checkpoint 28.2 MB, peak VRAM 2.6024560928344727
+{
+  "run": "patchcore_pca99_s0",
+  "split": "valid",
+  "image": {
+    "image_auroc": 0.9201631701631702,
+    "image_aupr": 0.9386492775048314
+  },
+  "pixel": {
+    "pixel_auroc": 0.9866904910802881,
+    "pixel_aupr": 0.6770840962479049,
+    "aupro_fpr0.3": 0.8903856961193384,
+    "dice_per_image": 0.5502404833365486,
+    "iou_per_image": 0.4212707635530387
+  },
+  "engineering": {
+    "latency_ms_mean": 3.778807880007662,
+    "latency_ms_p95": 3.8212026020119083,
+    "throughput_img_per_s": 264.63372358532615,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.11467313766479492,
+    "peak_cpu_rss_gb": 4.9117431640625,
+    "train_runtime_s": 368.2221863779996,
+    "train_peak_vram_gb": 2.6024560928344727,
+    "checkpoint_mb": 28.193848609924316
+  }
+}
+PCA: 384 -> 116 dims, explained 0.9502
+trained patchcore_pca95_s0: 333.3s, checkpoint 18.8 MB, peak VRAM 2.3610572814941406
+{
+  "run": "patchcore_pca95_s0",
+  "split": "valid",
+  "image": {
+    "image_auroc": 0.9166666666666667,
+    "image_aupr": 0.9319250752470296
+  },
+  "pixel": {
+    "pixel_auroc": 0.9863171758438639,
+    "pixel_aupr": 0.6746904476949137,
+    "aupro_fpr0.3": 0.8790827376597947,
+    "dice_per_image": 0.545012310731834,
+    "iou_per_image": 0.42008444241153137
+  },
+  "engineering": {
+    "latency_ms_mean": 3.1002265000279294,
+    "latency_ms_p95": 3.1184484489131137,
+    "throughput_img_per_s": 322.55707768157947,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.09580373764038086,
+    "peak_cpu_rss_gb": 4.9117431640625,
+    "train_runtime_s": 333.28268375599873,
+    "train_peak_vram_gb": 2.3610572814941406,
+    "checkpoint_mb": 18.796509742736816
+  }
+}
+# PCA experiments: patchcore (validation only)
+
+| Variant | dims | explained var. | Image AUROC | Pixel AUROC | AUPRO | Dice | Latency ms | Peak VRAM GB | Model MB | Fit s | Decision vs no-PCA |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| nopca | 384 | n/a | 0.9301 | 0.9855 | 0.8978 | 0.5195 | 4.5 | 0.13 | 37.0 | 370.4 | baseline |
+| pca99 | 250 | 0.9900 | 0.9202 | 0.9867 | 0.8904 | 0.5502 | 3.8 | 0.11 | 28.2 | 368.1 | KEEP |
+| pca95 | 116 | 0.9502 | 0.9167 | 0.9863 | 0.8791 | 0.5450 | 3.1 | 0.10 | 18.8 | 333.3 | REJECT |
+
+Rule: keep only if every quality drop (image AUROC, pixel AUROC, AUPRO) <= 0.01 AND latency or model size improves >= 20 %.
+

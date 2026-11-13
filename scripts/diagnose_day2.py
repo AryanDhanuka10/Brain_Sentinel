@@ -79,7 +79,9 @@ def main() -> int:
     out["train_resampling_median_mean_brain_idx_2.5_50_97.5"] = {
         "39 patients x 1 slice (cf. valid/good)": null_range(tr["mean"], tr["pat"], 39, 1, 2000, rng),
         "11 patients x 4 slices (cf. valid/Ungood)": null_range(tr["mean"], tr["pat"], 11, 4, 2000, rng)}
-    (ROOT / "results" / "day2_diagnose.json").write_text(json.dumps(out, indent=2))
+    _out = ROOT / "results" / "day2"
+    _out.mkdir(parents=True, exist_ok=True)
+    (_out / "day2_diagnose.json").write_text(json.dumps(out, indent=2))
 
     print("corner cases:", len(corner_cases))
     for g, f, c in corner_cases[:40]:

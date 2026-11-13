@@ -1,0 +1,1 @@
+trained patchcore_s0: 410.8s, checkpoint 37.0 MB, peak VRAM 3.462040424346924

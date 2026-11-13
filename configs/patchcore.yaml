@@ -1,0 +1,7 @@
+# Model C: PatchCore, ResNet18 layer2+layer3, 3x3 local aggregation, greedy coreset.
+# max_images bounds host RAM: 2000 slices x 900 patches x 384 dims x 4 B = 2.8 GB. Raise only if RAM allows.
+model: patchcore
+train: {batch_size: 16, seed: 0}
+hparams: {layers: [layer2, layer3], pretrained: true, coreset_ratio: 0.01, coreset_method: greedy, proj_dim: 128,
+          reduction: none, d_out: 128, pca_variance: null, sigma: 4.0, seed: 0, input_size: 240}
+fit: {max_images: 2000, pca_fit_images: 500}

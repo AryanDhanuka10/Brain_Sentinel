@@ -37,3 +37,40 @@ def index_rows():
         pytest.skip("run scripts/build_index.py first")
     with p.open(newline="") as f:
         return list(csv.DictReader(f))
+
+
+# ---- shared NON-MEDICAL mini-dataset fixtures (code-path tests only; see tests/fixtures_minidataset.py) ----
+import pytest  # noqa: E402
+
+
+@pytest.fixture(scope="session")
+def mini_ctx(tmp_path_factory):
+    from brainsentinel.data.preprocessing import load_pp_config
+    from brainsentinel.pipeline import Context
+    from tests import fixtures_minidataset as fx
+    root = tmp_path_factory.mktemp("mini_session")
+    cfg, pal = fx.build(root)
+    pp = load_pp_config()
+    pp["index_csv"] = str(root / "index.csv")
+    c = Context(cfg, pp, pal, root / "index.csv")
+    c.root = root
+    return c
+
+
+@pytest.fixture(scope="session")
+def mini_run(mini_ctx):
+    """A PatchCore run (random-init backbone: plumbing only) trained, with validation thresholds frozen."""
+    from brainsentinel.pipeline import evaluate_run, train_run
+    d = mini_ctx.root / "models" / "patchcore_mini_s0"
+    train_run(mini_ctx, "patchcore", {"pretrained": False, "coreset_ratio": 0.05}, {"max_images": 12}, d, seed=0,
+              device="cpu", batch_size=8, log=lambda *_: None)
+    evaluate_run(mini_ctx, d, "valid", device="cpu", n_bins=512, n_boot=20, bench=False)
+    return d
+
+
+@pytest.fixture(scope="session")
+def mini_png(mini_ctx):
+    """name -> PNG bytes of real files from the mini dataset."""
+    root = mini_ctx.root / "Brain"
+    return {"normal": (root / "test/good/img/00400_60.png").read_bytes(),
+            "lesion": (root / "test/Ungood/img/00500_60.png").read_bytes()}

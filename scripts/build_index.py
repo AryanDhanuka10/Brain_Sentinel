@@ -8,12 +8,12 @@ from collections import Counter
 from pathlib import Path
 
 import numpy as np
-from brainsentinel.data.palette import train_palette  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 os.chdir(ROOT)
 sys.path.insert(0, str(ROOT / "src"))
 from brainsentinel.data.checks import load_config, split_dir  # noqa: E402
+from brainsentinel.data.palette import train_palette  # noqa: E402
 from brainsentinel.data.index import (add_flags, build_rows, columns, fg_col,  # noqa: E402
                                       fg_colors, slice_bin, write_csv)
 
@@ -101,7 +101,9 @@ def main() -> int:
         s = sum(tot.values())
         summary["fg_pixel_share"][k] = {c: (round(v / s, 4) if s else None) for c, v in tot.items()}
     summary["checks"] = [{"name": n, "ok": ok, "detail": d} for n, ok, d in checks]
-    (ROOT / "results" / "day2_index_summary.json").write_text(json.dumps(summary, indent=2, default=str))
+    _out = ROOT / "results" / "day2"
+    _out.mkdir(parents=True, exist_ok=True)
+    (_out / "day2_index_summary.json").write_text(json.dumps(summary, indent=2, default=str))
 
     for n, ok, d in checks:
         print(("PASS" if ok else "FAIL"), n, "|", d)

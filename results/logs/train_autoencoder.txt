@@ -1,0 +1,31 @@
+epoch   1 train_mse 0.200333 val_normal_mse 0.062371
+epoch   2 train_mse 0.060985 val_normal_mse 0.050092
+epoch   3 train_mse 0.051709 val_normal_mse 0.037265
+epoch   4 train_mse 0.046843 val_normal_mse 0.035973
+epoch   5 train_mse 0.043363 val_normal_mse 0.036498
+epoch   6 train_mse 0.042282 val_normal_mse 0.034810
+epoch   7 train_mse 0.041705 val_normal_mse 0.035538
+epoch   8 train_mse 0.041789 val_normal_mse 0.031183
+epoch   9 train_mse 0.039960 val_normal_mse 0.031001
+epoch  10 train_mse 0.038517 val_normal_mse 0.030406
+epoch  11 train_mse 0.038323 val_normal_mse 0.030047
+epoch  12 train_mse 0.038751 val_normal_mse 0.030482
+epoch  13 train_mse 0.037697 val_normal_mse 0.033104
+epoch  14 train_mse 0.036070 val_normal_mse 0.032841
+epoch  15 train_mse 0.035703 val_normal_mse 0.036933
+epoch  16 train_mse 0.035821 val_normal_mse 0.030086
+epoch  17 train_mse 0.034601 val_normal_mse 0.029315
+epoch  18 train_mse 0.034995 val_normal_mse 0.034494
+epoch  19 train_mse 0.033987 val_normal_mse 0.030642
+epoch  20 train_mse 0.031798 val_normal_mse 0.028694
+epoch  21 train_mse 0.030319 val_normal_mse 0.027482
+epoch  22 train_mse 0.029483 val_normal_mse 0.033551
+epoch  23 train_mse 0.028898 val_normal_mse 0.026139
+epoch  24 train_mse 0.028463 val_normal_mse 0.028002
+epoch  25 train_mse 0.028847 val_normal_mse 0.027732
+epoch  26 train_mse 0.027594 val_normal_mse 0.026318
+epoch  27 train_mse 0.027764 val_normal_mse 0.030228
+epoch  28 train_mse 0.027288 val_normal_mse 0.027047
+epoch  29 train_mse 0.026679 val_normal_mse 0.029156
+early stop at epoch 29
+trained autoencoder_s0: 642.9s, checkpoint 5.3 MB, peak VRAM 0.29993104934692383

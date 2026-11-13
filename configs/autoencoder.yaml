@@ -1,0 +1,6 @@
+# Model A: convolutional autoencoder. Normal-only training; early stopping on VALIDATION NORMAL slices only.
+model: autoencoder
+normalize_mode: train_stats      # scalar mean/std fitted on train/good brain pixels (scripts/fit_norm_stats.py)
+train: {batch_size: 16, seed: 0}
+hparams: {width: 32, latent_channels: 16, sigma: 2.0, topk_frac: 0.01, train_noise_std: 0.0, input_size: 240}
+fit: {epochs: 40, lr: 0.001, weight_decay: 0.00001, patience: 6}

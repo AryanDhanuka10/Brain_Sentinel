@@ -68,7 +68,9 @@ def main() -> int:
         "per_group": per_group, "failures": bad[:50], "n_failures": len(bad),
     }
     (ROOT / "results").mkdir(exist_ok=True)
-    (ROOT / "results" / "day2_palette.json").write_text(json.dumps(out, indent=2))
+    _out = ROOT / "results" / "day2"
+    _out.mkdir(parents=True, exist_ok=True)
+    (_out / "day2_palette.json").write_text(json.dumps(out, indent=2))
     for g, d in per_group.items():
         print(g, d)
     print("max |palette - round(bone)|:", bone_diff)

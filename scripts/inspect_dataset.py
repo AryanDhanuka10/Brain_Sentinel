@@ -34,6 +34,7 @@ def emd(a: np.ndarray, b: np.ndarray) -> float:
 def main() -> int:
     cfg = load_config()
     OUT.mkdir(parents=True, exist_ok=True)
+    (ROOT / "results" / "day2").mkdir(parents=True, exist_ok=True)
     rows = list(csv.DictReader((ROOT / "data/processed/index.csv").open()))
     for r in rows:
         r["g"] = f"{r['split']}/{r['class']}"
@@ -66,7 +67,7 @@ def main() -> int:
             black["on_black"][r["g"]] += nb
             per_img_black[(r["g"], r["file"])] = nb / n
 
-    res: dict = {"palette_index0_black": True, "images_with_nonblack_corner": corner_bad}
+    res: dict = {"palette_index0_black": True, "images_with_corner_above_train_tolerance": corner_bad}
     res["lesion_px_on_index0"] = {g: {"on_black": black["on_black"][g], "lesion": black["lesion"][g],
                                       "share": black["on_black"][g] / black["lesion"][g],
                                       "images_with_any": sum(1 for (gg, _), v in per_img_black.items() if gg == g and v > 0),
@@ -81,7 +82,7 @@ def main() -> int:
     pat = lambda g: {r["patient"] for r in rows if r["g"] == g}  # noqa: E731
     res["good_vs_ungood_patient_overlap"] = {s: len(pat(f"{s}/good") & pat(f"{s}/Ungood")) for s in ("valid", "test")}
     res["patients_per_group"] = {g: len(pat(g)) for g in GROUPS}
-    (ROOT / "results" / "day2_inspect.json").write_text(json.dumps(res, indent=2))
+    (ROOT / "results" / "day2" / "day2_inspect.json").write_text(json.dumps(res, indent=2))
 
     fig, ax = plt.subplots(1, 2, figsize=(13, 4))
     for g in GROUPS:
@@ -130,7 +131,7 @@ def main() -> int:
 
     print(json.dumps(res, indent=2))
     ok = corner_bad == 0
-    print("RESULT:", "PASS" if ok else f"FAIL corners non-black in {corner_bad} images")
+    print("RESULT:", "PASS" if ok else f"FAIL corners above train-derived tolerance in {corner_bad} images")
     return 0 if ok else 1
 
 

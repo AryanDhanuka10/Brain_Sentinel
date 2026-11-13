@@ -26,7 +26,7 @@ BMAD repository states CC BY-NC-SA: non-commercial use, attribution, share-alike
 Masks are in `label/` (README: `anomaly_mask/`). `train/good` is flat (no `img/`). `good/` has an all-empty `label/`.
 
 ## Encoding
-240x240 RGBA uint8, alpha=255, R/G/B not identical (not grayscale); colour structure in results/day1_notes.md.
+240x240 RGBA uint8, alpha=255, R/G/B not identical (not grayscale); colour structure in results/day1/day1_notes.md.
 Masks: RGB in {(0,0,0),(56,55,77),(112,123,143),(255,255,255)}. Foreground = RGB != 0. Nearest-neighbour only.
 
 ## Known issues and limitations
@@ -44,4 +44,3 @@ Masks: RGB in {(0,0,0),(56,55,77),(112,123,143),(255,255,255)}. Foreground = RGB
 - Test is 82.8% abnormal; lesions range down to about 1 pixel.
 - Patient ID = filename prefix (assumption, not documented by the source); slice index = filename suffix (same caveat).
 - Research use only. No clinical claims.
-EOF

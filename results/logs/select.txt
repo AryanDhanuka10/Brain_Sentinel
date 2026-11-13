@@ -1,0 +1,1 @@
+selected: patchcore_s0 | rule: {"gates": {"max_vram_gb": 6.0, "max_latency_ms": 1000.0}, "aupro_margin": 0.02, "tie_break": "mean rank of pixel_auroc, per-image dice, image_auroc; then lower latency"}

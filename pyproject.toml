@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brainsentinel"
+version = "0.1.0"
+description = "Unsupervised brain MRI anomaly localization (BMAD Brain) with an evidence-grounded agentic review workflow. Research prototype, not a diagnostic device."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "data: needs the local BMAD Brain dataset under data/raw/Brain (skipped when absent)",
+    "gpu: needs a CUDA device (skipped when absent)",
+]

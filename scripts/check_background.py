@@ -50,7 +50,9 @@ def main() -> int:
            "offset_patients_flagged_of_total": {p: [sum(1 for o in off if o["patient"] == p), tot[p]]
                                                 for p in sorted({o["patient"] for o in off})},
            "offset_images": [{k: v for k, v in o.items() if k != "path"} for o in off]}
-    (ROOT / "results" / "day2_background.json").write_text(json.dumps(out, indent=2))
+    _out = ROOT / "results" / "day2"
+    _out.mkdir(parents=True, exist_ok=True)
+    (_out / "day2_background.json").write_text(json.dumps(out, indent=2))
     print(json.dumps({k: v for k, v in out.items() if k != "offset_images"}, indent=2))
     for o in out["offset_images"]:
         print(o)

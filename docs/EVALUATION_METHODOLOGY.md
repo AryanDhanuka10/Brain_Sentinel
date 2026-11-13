@@ -1,0 +1,8 @@
+# Evaluation methodology
+
+* **Image**: AUROC, AUPR (average precision), and at the validation-frozen threshold: precision, recall = sensitivity, specificity, FPR, F1. 95% CI for image AUROC by **patient-level bootstrap** (slices of a patient are correlated).
+* **Pixel**: AUROC, AUPR, **AUPRO** (per-region overlap vs pooled FPR ≤ 0.3, divided by 0.3; 8-connected GT components; negatives = all non-lesion pixels), **Dice/IoU** at the frozen pixel threshold - pooled and mean per abnormal image (pooled is dominated by large lesions) - and normal-image false-positive pixel rate. Pixel curves use exact pixel counts in 4,096 quantile-spaced bins (never a 214M-pixel sort); the only approximation is ties inside a bin. Tests bound it against scikit-learn (≤2e-3 AUROC), a brute-force AUPRO, and the analytic AUPRO of a random scorer (0.15).
+* **Variants**: full-frame and brain-ROI pixel metrics; lesions < 100 px removed; slice-stratified image AUROC; patient-disjoint test (10 overlapping patients excluded).
+* **Thresholds**: image = max F1 on valid; pixel = max pooled Dice on valid; frozen to `threshold.json` (`selected_on: valid` enforced). Valid has 83 slices, so thresholds are noisy; test is 82.8% abnormal, so FPR/precision must be read with that prevalence.
+* **Engineering**: per-slice latency (batch 1; includes network forward, distances, upsampling, smoothing; excludes disk/PNG/palette/H2D), mean/p95/throughput, peak VRAM (`max_memory_allocated`), peak CPU RSS, checkpoint size, train time.
+* **Not done**: multi-seed runs are supported (`--seed`) but NOT RUN; AUPRO is not stratified by lesion size beyond the <100 px variant.

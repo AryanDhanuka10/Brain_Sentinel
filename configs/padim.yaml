@@ -1,0 +1,6 @@
+# Model B: PaDiM, ResNet18 layer2+layer3 (384-d), per-position Gaussians. Paper default: random 100 dims.
+model: padim
+train: {batch_size: 16, seed: 0}
+hparams: {layers: [layer2, layer3], pretrained: true, reduction: random, d_out: 100, pca_variance: null,
+          reg_eps: 0.01, sigma: 4.0, seed: 0, input_size: 240}
+fit: {max_images: null, pca_fit_images: 500}

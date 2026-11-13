@@ -8,7 +8,14 @@ pillow==13.0.0
 pyyaml==6.0.3
 pytest==9.2.0
 matplotlib==3.11.2
-# --- NOT YET INSTALLED: add and pin when their day starts ---
-# scikit-learn, scipy, pandas, tqdm      (Days 3-7: metrics, PRO, tables)
-# langgraph                               (Day 10)
-# fastapi, uvicorn, python-multipart      (Day 11)
+# --- Days 4-12 (versions verified by a clean pip install + full test run in the cloud sandbox,
+#     Python 3.13; re-verify locally with `pip check` and `pytest`) ---
+scikit-learn==1.9.1
+scipy==1.18.1
+pandas==3.1.1
+opencv-python-headless==5.0.0.93
+langgraph==1.2.20
+fastapi==0.162.0
+uvicorn==0.54.0
+python-multipart==0.0.33
+httpx==0.28.1        # FastAPI TestClient

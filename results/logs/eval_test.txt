@@ -1,0 +1,27 @@
+{
+  "run": "patchcore_s0",
+  "split": "test",
+  "image": {
+    "image_auroc": 0.9093135162601627,
+    "image_aupr": 0.9766995758112409
+  },
+  "pixel": {
+    "pixel_auroc": 0.9789237803963043,
+    "pixel_aupr": 0.6460644976913382,
+    "aupro_fpr0.3": 0.8467402153580935,
+    "dice_per_image": 0.5013584139453556,
+    "iou_per_image": 0.3804803318031523
+  },
+  "engineering": {
+    "latency_ms_mean": 4.535425659923931,
+    "latency_ms_p95": 4.561425002066244,
+    "throughput_img_per_s": 220.48647138817225,
+    "runs": 50,
+    "device": "cuda",
+    "peak_vram_gb": 0.13354253768920898,
+    "peak_cpu_rss_gb": 3.261505126953125,
+    "train_runtime_s": 410.7928637819996,
+    "train_peak_vram_gb": 3.462040424346924,
+    "checkpoint_mb": 37.02503967285156
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "rule": {
+    "gates": {
+      "max_vram_gb": 6.0,
+      "max_latency_ms": 1000.0
+    },
+    "aupro_margin": 0.02,
+    "tie_break": "mean rank of pixel_auroc, per-image dice, image_auroc; then lower latency"
+  },
+  "selected": "patchcore_s0",
+  "selected_dir": "artifacts/models/patchcore_s0",
+  "evaluated_on": "valid",
+  "candidates": [
+    {
+      "run": "artifacts/models/autoencoder_s0",
+      "run_id": "autoencoder_s0",
+      "model": "autoencoder",
+      "aupro": 0.5015448831673514,
+      "pixel_auroc": 0.8317388579167222,
+      "dice": 0.19283817650778554,
+      "image_auroc": 0.35198135198135194,
+      "latency_ms": 0.6909491999977035,
+      "vram": 0.011312484741210938,
+      "gate_ok": true
+    },
+    {
+      "run": "artifacts/models/padim_s0",
+      "run_id": "padim_s0",
+      "model": "padim",
+      "aupro": 0.8156187320398949,
+      "pixel_auroc": 0.9713628536590417,
+      "dice": 0.4478831768890837,
+      "image_auroc": 0.8735431235431236,
+      "latency_ms": 1.116920080039563,
+      "vram": 0.0538482666015625,
+      "gate_ok": true
+    },
+    {
+      "run": "artifacts/models/patchcore_s0",
+      "run_id": "patchcore_s0",
+      "model": "patchcore",
+      "aupro": 0.8978173170936662,
+      "pixel_auroc": 0.9854899488706622,
+      "dice": 0.5195322520659856,
+      "image_auroc": 0.93006993006993,
+      "latency_ms": 4.482283759934944,
+      "vram": 0.13354253768920898,
+      "gate_ok": true,
+      "rank_pixel_auroc": 1,
+      "rank_dice": 1,
+      "rank_image_auroc": 1,
+      "mean_rank": 1.0
+    }
+  ]
+}
